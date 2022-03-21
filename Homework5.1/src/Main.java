@@ -1,21 +1,16 @@
+import business.concretes.UserCheckManager;
 import business.concretes.UserManager;
-import core.UserCheckService;
-import core.UserCheckServiceAdapter;
-import dataAccess.abstracts.UserDao;
-import dataAccess.concretes.HibernateUserDao;
-import entities.concretes.User;
 
 public class Main {
 
 	public static void main(String[] args) {
-		
-		UserDao userDao=new HibernateUserDao();
-		UserCheckService checkService=new UserCheckServiceAdapter();
-		
-		UserManager userManager=new UserManager(userDao,checkService);
-		
-		User user =new User(1,"server","server","email","password");
-		userManager.add(user);
+		Customer user = new Customer();
+		user.setCustomerId(1);
+		user.setFirstName("Soner");
+		user.setLastName("Çelik");
+		user.setEmail("sonercelik@hotmail.com");
+		user.setPassword("123456");
+		UserManager customerManager = new UserManagerC(new Ver);
 	}
 
 }

@@ -11,4 +11,7 @@ public interface UserDao {
 	
 	User get(int id);
 	List<User>[] getAll();
+	
+	boolean getEmail(String email);
+	boolean getPassword(String password);
 }
