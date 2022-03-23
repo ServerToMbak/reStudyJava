@@ -17,8 +17,63 @@ public class Main {
 			try {
 
 				connection =helper.getConnection();
-				statement = connection.prepareStatement
-				("insert into city(Name,CountryCode,District,Population) value('DÜZCE','TUR','Düzce',50000)");
+				String sql="delete from city where id=? ";//çalýþtýracaðýmýz sql kodu
+				
+				statement = connection.prepareStatement(sql);
+				statement.setInt(1, 4086);
+				int result=statement.executeUpdate();
+				System.out.println("kayýt silindi");
+		
+				
+			} catch (SQLException exception) {
+				helper.showErrorMessage(exception);	
+				
+			}finally {
+				statement.close();  //statement ve connection'ý kapattýðýmýz kýsým
+				connection.close();
+			}
+		
+	}
+	public void updateData()throws SQLException{
+		Connection connection=null;
+		DbHelper helper=new DbHelper();
+		PreparedStatement statement=null;
+		ResultSet resultSet;	
+			try {
+
+				connection =helper.getConnection();
+				String sql="update city set population = 100000 where id = ? ";//çalýþtýracaðýmýz sql kodu
+				
+				statement = connection.prepareStatement(sql);
+				statement.setInt(1, 4086);
+				int result=statement.executeUpdate();
+				System.out.println("kayýt güncellendi");
+		
+				
+			} catch (SQLException exception) {
+				helper.showErrorMessage(exception);	
+				
+			}finally {
+				statement.close();  //statement ve connection'ý kapattýðýmýz kýsým
+				connection.close();
+			}
+	}
+	public static void insertData() throws SQLException{
+		Connection connection=null;
+		DbHelper helper=new DbHelper();
+		PreparedStatement statement=null;
+		ResultSet resultSet;	
+			try {
+  
+				connection =helper.getConnection();  //dtaabase'e baðlanma
+				String sql="insert into city(Name,CountryCode,District,Population) values(?,?,?,?)";
+				statement = connection.prepareStatement(sql);
+				statement.setString(1, "Düzce2");
+				statement.setString(2, "TUR");
+				statement.setString(3, "TURKKEY");
+				statement.setInt(4, 70000);
+				
+				
 				int result=statement.executeUpdate();
 				System.out.println("kayýt ekledi");
 		
@@ -33,9 +88,7 @@ public class Main {
 		
 	}
 	
-	
-	
-	public void select() throws SQLException {
+	public static void select() throws SQLException {
 		Connection connection=null;
 		DbHelper helper=new DbHelper();
 		Statement statement=null;
