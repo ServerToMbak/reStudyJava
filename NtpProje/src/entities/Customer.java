@@ -1,6 +1,6 @@
 package entities;
 
-public class Customer  extends User{
+public class Customer extends User{
 	String firstName;
 	String lastName;
 	
@@ -18,7 +18,7 @@ public class Customer  extends User{
 		this.lastName = lastName;
 	}
 	public Customer() {
-
+ 
 	}
 	public Customer(String email,String firstName, String lastName) {
 		this();

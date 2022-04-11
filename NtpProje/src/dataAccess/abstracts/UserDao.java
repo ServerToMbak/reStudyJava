@@ -1,9 +1,8 @@
 package dataAccess.abstracts;
 
-import entities.User;
+public interface UserDao<T> {
 
-public interface UserDao {
-	void add(User user) ;
-	void delete(User user);
-	void update(User user);
+	void add(T Usertype) ;
+	void delete(T Usertype);
+	void update(T Usertype);
 }

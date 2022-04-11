@@ -1,14 +1,14 @@
 package business.concretes;
 
-import business.abstracts.UserManagerService;
+import business.abstracts.CustomerManagerService;
 import dataAccess.abstracts.UserDao;
-import entities.User;
+import entities.Customer;
 
-public class UserManager implements UserManagerService{
+public class UserManager implements CustomerManagerService{
 	private UserDao userDao;
 
 	public UserManager() {
-		
+		 
 	}
 	
 	public UserManager(UserDao userDao) {
@@ -18,16 +18,20 @@ public class UserManager implements UserManagerService{
 
 
 	@Override
-	public void signUp(User user) {
+	public void signUp(Customer customer) {
 	
-		userDao.add(user);
+		userDao.add(customer);
 		
 	}
 
 
 	@Override
-	public void singIn(User user) {
-		
+	public void singIn(Customer customer) {
+		/*
+		 * if(customer.getEmail().isEmpty()&&customer.getPassword()) {
+		 * 
+		 * }
+		 */
 		
 	}
 		
