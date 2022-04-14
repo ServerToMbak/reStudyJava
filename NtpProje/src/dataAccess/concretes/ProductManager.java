@@ -33,4 +33,12 @@ public class ProductManager implements ProductDao{
 		
 	}
 
+	@Override
+	public void showProducts() {
+		for(Product product: productList) {
+			
+		}
+		
+	}
+
 }

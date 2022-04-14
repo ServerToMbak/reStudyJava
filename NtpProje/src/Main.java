@@ -1,4 +1,4 @@
-import business.concretes.UserManager;
+import business.concretes.CustomerManager;
 import dataAccess.concretes.MysqlDaOForCompany;
 import dataAccess.concretes.MysqlDaoForCustomer;
 import entities.Company;
@@ -25,7 +25,7 @@ public class Main {
 	MysqlDaoForCustomer<Customer> daoCus=new MysqlDaoForCustomer<Customer>();
 	MysqlDaOForCompany<Company> daoCom=new MysqlDaOForCompany<Company>();
 	
-	UserManager userManager=new UserManager(daoCus);		
+	CustomerManager userManager=new CustomerManager(daoCus);		
 
 	Company company1= new Company();
 	company1.setCompanyName("HepsiBurada");

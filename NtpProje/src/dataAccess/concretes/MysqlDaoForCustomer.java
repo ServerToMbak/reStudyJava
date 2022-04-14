@@ -1,29 +1,30 @@
 package dataAccess.concretes;
 
 import java.util.ArrayList;
+
 import dataAccess.abstracts.UserDao;
 import entities.Customer;
 
 public class MysqlDaoForCustomer<T> implements UserDao<Customer>{
-	ArrayList<Customer> userList=new ArrayList<Customer>();
+	ArrayList<Customer> customerDao=new ArrayList<Customer>();
 	
 	@Override
 	public void add(Customer customer)  {
-	userList.add(customer);
+	customerDao.add(customer);
 		System.out.println("eklendi: "+customer.getEmail());
 		
 	}
 	public void getAllUsers() {
-		for(Customer customers:userList) {
+		for(Customer customers:customerDao) {
 			
-			System.out.println(customers.getEmail()+" Id: "+userList.indexOf(customers));
+			System.out.println(customers.getEmail()+" Id: "+customerDao.indexOf(customers));
 			
 		}
 	}
 
 	@Override
 	public void delete(Customer customer) {
-		userList.remove(customer);
+		customerDao.remove(customer);
 		System.out.println(customer.getEmail()+" mail adresli müsteri silindi");
 		
 	}
@@ -35,7 +36,7 @@ public class MysqlDaoForCustomer<T> implements UserDao<Customer>{
 		customer.setFirstName(customer.getFirstName());
 		customer.setLastName(customer.getLastName());
 		customer.setPassword(customer.getPassword());
-		userList.set(userList.indexOf(customer),customer);
+		customerDao.set(customerDao.indexOf(customer),customer);
 		System.out.println("güncellendi " + customer.getEmail()
 		+customer.getFirstName()+customer.getLastName()+customer.getPassword());
 		
