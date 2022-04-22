@@ -1,3 +1,4 @@
+import business.concretes.CompanyManager;
 import business.concretes.CustomerManager;
 import dataAccess.concretes.MysqlDaOForCompany;
 import dataAccess.concretes.MysqlDaoForCustomer;
@@ -38,24 +39,26 @@ public class Main {
 	customer1.setFirstName("server");
 	customer1.setLastName("Tombak");
 
-	
+	CompanyManager<Company> c=new CompanyManager<Company>(daoCom);
+	c.signUp(company1);
 	
 	//userManager.signUp(company1);
 	userManager.signUp(customer1);
 	//dao.delete(customer1);
-	daoCom.add(company1);
+//	daoCom.add(company1);
 	
 	 // customer1.setEmail("customer212@gmail.com");
 	
 	 
 	  //dao.update(company1);
 	 // dao.update(customer1);
-	  daoCus.delete(customer1);
-	  daoCus.getAllUsers();
+	 // daoCus.delete(customer1);
+	  //daoCus.getAllUsers();
 	
-	 company1.setEmail("hepsinerede215@gmail.com"); 
-	 daoCom.update(company1); 
-	 daoCom.delete(company1);
+	 //company1.setEmail("hepsinerede215@gmail.com"); 
+	 //daoCom.update(company1); 
+	 //daoCom.delete(company1);
+	
 	
 	}
 	

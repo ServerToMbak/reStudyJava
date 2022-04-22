@@ -11,27 +11,27 @@ public class MysqlDaoForCustomer<T> implements UserDao<Customer>{
 	@Override
 	public void add(Customer customer)  {
 	customerDao.add(customer);
-		System.out.println("eklendi: "+customer.getEmail());
+		System.out.println("Database'e eklendi: "+customer.getEmail());
 		
 	}
-	public void getAllUsers() {
+	public void getAllUsers(Customer customer) {
 		for(Customer customers:customerDao) {
-			
-			System.out.println(customers.getEmail()+" Id: "+customerDao.indexOf(customers));
-			
+			System.out.println(customers.getEmail()+" Id: "+customerDao.indexOf(customers));	
 		}
+		
 	}
+
 
 	@Override
 	public void delete(Customer customer) {
 		customerDao.remove(customer);
-		System.out.println(customer.getEmail()+" mail adresli müsteri silindi");
+		System.out.println(customer.getEmail()+" mail adresli müsteri database'den silindi");
 		
 	}
 
 	@Override
 	public void update(Customer customer) {
-		System.out.println("güncellendi");
+		System.out.println("database güncellendi");
 		customer.setEmail(customer.getEmail());
 		customer.setFirstName(customer.getFirstName());
 		customer.setLastName(customer.getLastName());
