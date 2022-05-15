@@ -6,17 +6,17 @@ import dataAccess.abstracts.UserDao;
 import entities.Customer;
 
 public class MysqlDaoForCustomer<T> implements UserDao<Customer>{
-	ArrayList<Customer> customerDao=new ArrayList<Customer>();
+	ArrayList<Customer> customerList=new ArrayList<Customer>();
 	
 	@Override
 	public void add(Customer customer)  {
-	customerDao.add(customer);
+	customerList.add(customer);
 		System.out.println("Database'e eklendi: "+customer.getEmail());
 		
 	}
 	public void getAllUsers(Customer customer) {
-		for(Customer customers:customerDao) {
-			System.out.println(customers.getEmail()+" Id: "+customerDao.indexOf(customers));	
+		for(Customer customers:customerList) {
+			System.out.println(customers.getEmail()+" Id: "+customerList.indexOf(customers));	
 		}
 		
 	}
@@ -24,8 +24,8 @@ public class MysqlDaoForCustomer<T> implements UserDao<Customer>{
 
 	@Override
 	public void delete(Customer customer) {
-		customerDao.remove(customer);
-		System.out.println(customer.getEmail()+" mail adresli müsteri database'den silindi");
+		customerList.remove(customer);
+		System.out.println(customer.getEmail()+" mail adresli müsteri 	silindi");
 		
 	}
 
@@ -36,10 +36,25 @@ public class MysqlDaoForCustomer<T> implements UserDao<Customer>{
 		customer.setFirstName(customer.getFirstName());
 		customer.setLastName(customer.getLastName());
 		customer.setPassword(customer.getPassword());
-		customerDao.set(customerDao.indexOf(customer),customer);
+		customerList.set(customerList.indexOf(customer),customer);
 		System.out.println("güncellendi " + customer.getEmail()
 		+customer.getFirstName()+customer.getLastName()+customer.getPassword());
 		
+	}
+	@Override
+	public void list(Customer customer) {
+		//customer.getEmail()
+		
+	}
+	@Override
+	public String mail(Customer customer) {
+		
+		return customer.getEmail();
+	}
+	@Override
+	public String password(Customer customer) {
+		
+		return customer.getPassword();
 	}
 
 }

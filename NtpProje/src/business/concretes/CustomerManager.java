@@ -14,7 +14,7 @@ public class CustomerManager<T> implements UserManagerService<Customer>{
 		 
 	}
 	
-	public CustomerManager(MysqlDaoForCustomer userDao) {
+	public CustomerManager(MysqlDaoForCustomer<Customer> userDao) {
 		this();
 		this.userDao = userDao;
 	}

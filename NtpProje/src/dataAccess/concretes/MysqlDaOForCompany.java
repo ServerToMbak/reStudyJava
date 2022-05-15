@@ -36,6 +36,24 @@ public class MysqlDaOForCompany<T> implements UserDao<Company>{
 		
 	}
 
+	@Override
+	public void list(Company company) {
+		
+	}
+
+	@Override
+	public String mail(Company company) {
+		
+		return company.getEmail();
+	
+	}
+
+	@Override
+	public String password(Company company) {
+		// TODO Auto-generated method stub
+		return company.getPassword();
+	}
+
 	
 	}
 	

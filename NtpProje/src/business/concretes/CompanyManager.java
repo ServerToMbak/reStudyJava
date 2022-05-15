@@ -6,9 +6,10 @@ import entities.Company;
 
 public class CompanyManager<T> implements UserManagerService<Company> {
 	private MysqlDaOForCompany<Company> userDao;
-	
-	public CompanyManager(MysqlDaOForCompany userDao) {
+	private UserCheckInformation usercheckInformation;
+	public CompanyManager(MysqlDaOForCompany<Company> userDao,UserCheckInformation userCheckInformation) {
 		this.userDao=userDao;
+		this.usercheckInformation=userCheckInformation;
 	}
 
 	@Override
@@ -19,7 +20,9 @@ public class CompanyManager<T> implements UserManagerService<Company> {
 
 	@Override
 	public void singIn(Company company) {
-	
+	 if(usercheckInformation.checkPassword(company)&&usercheckInformation.checkPassword(company)) {
+		 	System.out.println("giriþ yaptýnýz");
+	 }
 		
 	}
 

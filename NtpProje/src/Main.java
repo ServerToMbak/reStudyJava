@@ -1,9 +1,13 @@
 import business.concretes.CompanyManager;
 import business.concretes.CustomerManager;
+import business.concretes.ProductManager;
+import business.concretes.UserCheckInformation;
+import dataAccess.concretes.MySqlProductDao;
 import dataAccess.concretes.MysqlDaOForCompany;
 import dataAccess.concretes.MysqlDaoForCustomer;
 import entities.Company;
 import entities.Customer;
+import entities.Product;
 
 public class Main {
 
@@ -23,10 +27,12 @@ public class Main {
 		}
 
 	*/
-	MysqlDaoForCustomer<Customer> daoCus=new MysqlDaoForCustomer<Customer>();
+		System.out.println("Server e-ticaret sitesine hoþgeldiniz!!!! kayýt ol yada giriþ yap seçenekleriyle devam edebilisiniz");
+		
+		MysqlDaoForCustomer<Customer> daoCus=new MysqlDaoForCustomer<Customer>();
 	MysqlDaOForCompany<Company> daoCom=new MysqlDaOForCompany<Company>();
-	
-	CustomerManager userManager=new CustomerManager(daoCus);		
+	UserCheckInformation checkInformation=new UserCheckInformation();
+	CustomerManager<Customer> userManager=new CustomerManager<Customer>(daoCus);		
 
 	Company company1= new Company();
 	company1.setCompanyName("HepsiBurada");
@@ -39,9 +45,15 @@ public class Main {
 	customer1.setFirstName("server");
 	customer1.setLastName("Tombak");
 
-	CompanyManager<Company> c=new CompanyManager<Company>(daoCom);
+	CompanyManager<Company> c=new CompanyManager<Company>(daoCom,checkInformation);
 	c.signUp(company1);
 	
+	
+	Product product=new Product(1," Elma"," 20"," 5") ;
+	MySqlProductDao productDao=new MySqlProductDao();
+	ProductManager proMan=new ProductManager(productDao);
+	proMan.addProduct(product);
+	proMan.allProduct();
 	//userManager.signUp(company1);
 	userManager.signUp(customer1);
 	//dao.delete(customer1);
