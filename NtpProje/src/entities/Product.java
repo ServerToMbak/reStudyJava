@@ -2,14 +2,23 @@ package entities;
 
 public class Product {
 	int id;
+	int sirket›d;
 	String productName;
 	String productPrice;
 	String stockAdeti;
-	public Product(int id, String productName, String productPrice, String stockAdeti) {
+	
+	public Product(int id,String productName, String productPrice, String stockAdeti,int sirket›d) {
 		this.id = id;
+		this.sirket›d=sirket›d;
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.stockAdeti = stockAdeti;
+	}
+	public int getSirket›d() {
+		return sirket›d;
+	}
+	public void setSirket›d(int sirket›d) {
+		this.sirket›d = sirket›d;
 	}
 	public int getId() {
 		return id;

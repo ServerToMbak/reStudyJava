@@ -1,13 +1,17 @@
 package business.concretes;
 
 import business.abstracts.UserManagerService;
-import dataAccess.concretes.MysqlDaOForCompany;
+import dataAccess.abstracts.ProductDao;
+import dataAccess.concretes.MysqlDaOForCompanyUser;
 import entities.Company;
+import entities.Product;
 
 public class CompanyManager<T> implements UserManagerService<Company> {
-	private MysqlDaOForCompany<Company> userDao;
+	private MysqlDaOForCompanyUser<Company> userDao;
 	private UserCheckInformation usercheckInformation;
-	public CompanyManager(MysqlDaOForCompany<Company> userDao,UserCheckInformation userCheckInformation) {
+	private ProductDao productdao;
+	public CompanyManager(MysqlDaOForCompanyUser<Company> userDao,ProductDao productDao,UserCheckInformation userCheckInformation) {
+		this.productdao= productDao;
 		this.userDao=userDao;
 		this.usercheckInformation=userCheckInformation;
 	}
@@ -20,7 +24,7 @@ public class CompanyManager<T> implements UserManagerService<Company> {
 
 	@Override
 	public void singIn(Company company) {
-	 if(usercheckInformation.checkPassword(company)&&usercheckInformation.checkPassword(company)) {
+	 if((usercheckInformation.checkPassword(company)&&usercheckInformation.checkPassword(company))==true) {
 		 	System.out.println("giriþ yaptýnýz");
 	 }
 		
@@ -37,5 +41,14 @@ public class CompanyManager<T> implements UserManagerService<Company> {
 		this.userDao.delete(customer);
 		
 	}
+	
+	public void ürünEkle(Product product) {
+		this.productdao.addProduct(product);
+	}
+	public void ürünSil(Product product) {
+		this.productdao.DeleteProduct(product);
+	}
+	
+	
 
 }

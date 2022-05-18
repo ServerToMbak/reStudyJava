@@ -6,5 +6,5 @@ public interface UserDao<T> {
 	void add(T Usertype) ;
 	void delete(T Usertype);
 	void update(T Usertype);
-	void list(T usertype);
+	void list();
 }

@@ -20,8 +20,9 @@ public class Customer extends User{
 	public Customer() {
  
 	}
-	public Customer(String email,String firstName, String lastName) {
+	public Customer(int id,String email,String firstName, String lastName) {
 		this();
+		this.id=id;
 		this.email=email;
 		this.firstName = firstName;
 		this.lastName = lastName;

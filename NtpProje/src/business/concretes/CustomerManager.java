@@ -1,20 +1,20 @@
 package business.concretes;
 
 import business.abstracts.UserManagerService;
-import dataAccess.concretes.MysqlDaoForCustomer;
+import dataAccess.concretes.MysqlDaoForCustomerUser;
 import entities.Customer;
 
 
 public class CustomerManager<T> implements UserManagerService<Customer>{
 	String emaail;
 	String password;
-	private MysqlDaoForCustomer<Customer> userDao;
+	private MysqlDaoForCustomerUser<Customer> userDao;
 
 	public CustomerManager() {
 		 
 	}
 	
-	public CustomerManager(MysqlDaoForCustomer<Customer> userDao) {
+	public CustomerManager(MysqlDaoForCustomerUser<Customer> userDao) {
 		this();
 		this.userDao = userDao;
 	}

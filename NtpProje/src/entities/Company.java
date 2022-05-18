@@ -6,8 +6,9 @@ public class Company extends User{
 	public Company(){
 		
 	}
-	public Company(String email,String companyName) {
+	public Company(int id,String email,String companyName) {
 		this();
+		this.id=id;
 		this.email=email;
 		this.CompanyName = companyName;
 	}

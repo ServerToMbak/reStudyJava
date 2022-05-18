@@ -1,9 +1,10 @@
 package entities;
 
 public class User {
-	 String password;
+	int id;
+	String password;
 	 String email;
-	
+	 
 	public String getPassword() {
 		return password;
 	}
@@ -11,7 +12,12 @@ public class User {
 		this.password = password;
 	}
 
-	
+	 public int getId() {	
+			return id;
+		}
+	public void setId(int id) {
+			this.id = id;
+	}
 	public String getEmail() {
 		return email;
 	}

@@ -1,8 +1,6 @@
 package business.abstracts;
 
-import entities.User;
-
-public interface UserCheckInformationService {
+public interface UserCheckInformationService<User> {
 	boolean checkEmail(User user);
 	boolean checkPassword(User user);
 }

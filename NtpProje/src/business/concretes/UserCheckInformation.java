@@ -4,7 +4,7 @@ import business.abstracts.UserCheckInformationService;
 import dataAccess.abstracts.UserDao;
 import entities.User;
 
-public class UserCheckInformation implements UserCheckInformationService{
+public class UserCheckInformation<T> implements UserCheckInformationService<User>{
 
 	
 	private UserDao<User> userDao;
