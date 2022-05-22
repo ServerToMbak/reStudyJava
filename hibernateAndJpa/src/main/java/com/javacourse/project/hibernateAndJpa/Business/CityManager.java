@@ -8,14 +8,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.javacourse.project.hibernateAndJpa.DataAccess.ICityDal;
 import com.javacourse.project.hibernateAndJpa.entities.City;
+
+	
 @Service
 public class CityManager implements ICityService{
 
 	private ICityDal cityDal;
+	
 	@Autowired
 	public CityManager(ICityDal cityDal) {
-		super();
-		this.cityDal = cityDal;
+		 	
+		this.cityDal = cityDal;	
 	}
 
 	@Override
@@ -28,14 +31,25 @@ public class CityManager implements ICityService{
 	@Override
 	@Transactional
 	public void add(City city) {
-		// TODO Auto-generated method stub
-		
+		this.cityDal.add(city);
 	}
 
 	@Override
 	@Transactional
 	public void update(City city) {
-		// TODO Auto-generated method stub
+		this.cityDal.update(city);
+		
+	}
+
+	@Override
+	public City getById(int id) {
+		
+		return this.cityDal.getById(id);
+	}
+
+	@Override
+	public void delete(City city) {
+		this.cityDal.delete(city);
 		
 	}
 

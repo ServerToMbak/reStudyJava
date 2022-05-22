@@ -48,7 +48,9 @@ public class CompanyManager<T> implements UserManagerService<Company> {
 	public void ürünSil(Product product) {
 		this.productdao.DeleteProduct(product);
 	}
-	
+	public void tümÜrünlerim() {
+		this.productdao.showProducts();
+	}
 	
 
 }

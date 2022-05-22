@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,13 +21,29 @@ public class CityController {
 	
 	@Autowired
 	public CityController(ICityService cityService) {
-		super();
+
 		this.cityService = cityService;
 	}
 	
 	@GetMapping("/cities")
 	public List<City> get(){
-		return this.cityService.GetAll();
+		return cityService.GetAll();
 	}
-
+	@PostMapping("/add")
+		public void add(@RequestBody City city) {
+		cityService.add(city);
+	}
+	@PostMapping("/update")
+	public void update(@RequestBody City city) {
+	cityService.update(city)	;
+}
+	@PostMapping("/delete")
+	public void delete(@RequestBody City city) {
+	this.cityService.delete(city);
+	}
+	@GetMapping("/cities/{id}")
+	public City getById(@PathVariable int id){
+		return this.cityService.getById(id);
+	}
+	
 }

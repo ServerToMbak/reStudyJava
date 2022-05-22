@@ -83,7 +83,7 @@ public class MysqlDaoForCustomerUser<T> implements UserDao<Customer>{
 		
 	}
 	@Override
-	public void list() {
+	public void getAll() {
 		try {
 			ArrayList<Customer> customerList=new ArrayList<Customer>();
 
@@ -113,15 +113,13 @@ public class MysqlDaoForCustomerUser<T> implements UserDao<Customer>{
 		}
 		
 	}
+
+
+
 	@Override
-	public String mail(Customer customer) {
+	public void find(Customer customer) {
 		
-		return customer.getEmail();
-	}
-	@Override
-	public String password(Customer customer) {
 		
-		return null;
 	}
 
 }

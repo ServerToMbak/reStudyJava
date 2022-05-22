@@ -34,8 +34,19 @@ public class UserManager implements UserService{
 	}
 
 	@Override
-	public void signin(User user) {
-		// TODO Auto-generated method stub
+	public void signIn(User user) {
+		mailVerificationService.verifyMail(user);
+		if(userDao.getEmail(user.getEmail())&&userDao.getPassword
+		(user.getPassword())&&mailVerificationService.checkVerifyAccount(user)==true ) 
+			System.out.println("giriþ baþarýlý"); 
+				else if(mailVerificationService.checkVerifyAccount(user)){
+					System.out.println("Kullancýý bilgileri doðru ama mail adresi doðrulanamdýðý için giriþ yapýlamýyor.");
+			
+		}else {
+			System.out.println("giriþ baþarýsýz");
+		}
+		
+		
 		
 	}
 

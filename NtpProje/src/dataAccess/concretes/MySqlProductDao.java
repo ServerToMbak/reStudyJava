@@ -27,7 +27,7 @@ public class MySqlProductDao implements ProductDao{
 			statement.setString(2, product.getProductName());
 			statement.setString(3, product.getProductPrice());
 			statement.setString(4, product.getStockAdeti());
-			statement.setInt(5, product.getSirketÝd());
+			statement.setInt(5, product.getId());
 			int result=statement.executeUpdate();
 			System.out.println("ürün database eklendi " + product.getProductName());
 	
@@ -49,7 +49,7 @@ public class MySqlProductDao implements ProductDao{
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1,product.getId());
 			int result=statement.executeUpdate();
-			System.out.println("kayýt database'den silindi");
+			System.out.println("ürün database'den silindi");
 	
 			
 		} catch (SQLException exception) {
@@ -89,7 +89,7 @@ public class MySqlProductDao implements ProductDao{
 			ArrayList<Product> productList = new ArrayList<Product>();
 			connection =helper.getConnection();
 			statementa = connection.createStatement();
-			resultSet=statementa.executeQuery("select id,productName,Email,stockAdeti,sirketÝd from product");
+			resultSet=statementa.executeQuery("select id,productName,productPrice,stockAdeti,sirketÝd from product");
 			
 			
 			while(resultSet.next()) {
@@ -114,11 +114,6 @@ public class MySqlProductDao implements ProductDao{
 		
 	}
 
-	@Override
-	public void yorumYap(Product product) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 }

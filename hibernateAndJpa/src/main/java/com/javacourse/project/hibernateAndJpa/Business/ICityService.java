@@ -1,4 +1,4 @@
-package com.javacourse.project.hibernateAndJpa.Business;
+	package com.javacourse.project.hibernateAndJpa.Business;
 
 import java.util.List;
 
@@ -8,5 +8,7 @@ public interface ICityService {
 	List<City> GetAll();
 	void add(City city);
 	void update(City city);
+	void delete(City city);
+	City getById(int id);
 	
 }

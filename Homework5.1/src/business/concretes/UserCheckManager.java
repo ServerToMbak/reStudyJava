@@ -17,7 +17,7 @@ public class UserCheckManager implements UserCheckService {
 		}else {
 			if(user.getName().length()<3) {
 				System.out.println("isim 2 karakterden daha küçük olamaz");
-				return false;
+				return false;                        
 			}
 			return true;
 		}

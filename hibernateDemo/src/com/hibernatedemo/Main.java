@@ -52,7 +52,7 @@ public class Main {
 			
 			//-----DELETE ÝÞLEMÝ-----
 			  
-			City city= session.get(City.class, 4090);
+			City city= session.get(City.class, 4000);
 				
 			session.delete(city);
 			

@@ -7,5 +7,5 @@ void showProducts();
 void addProduct(Product product);
 void DeleteProduct(Product product);
 void UpdateProduct(Product product);
-void yorumYap(Product product);
+
 }

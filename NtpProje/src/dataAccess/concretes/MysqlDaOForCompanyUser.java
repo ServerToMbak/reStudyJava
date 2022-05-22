@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import dataAccess.abstracts.UserDao;
 import entities.Company;
 public class MysqlDaOForCompanyUser<T> implements UserDao<Company>{
-	
+	ArrayList<Company> companyList=new ArrayList<Company>();
 	Connection connection=null;
 	DbHelper helper=new DbHelper();
 	PreparedStatement statement=null;
@@ -81,9 +81,9 @@ public class MysqlDaOForCompanyUser<T> implements UserDao<Company>{
 	}
 
 	@Override
-	public void list() {
+	public void getAll() {
 		try {
-			ArrayList<Company> companyList=new ArrayList<Company>();
+		
 			connection =helper.getConnection();
 			statementa = connection.createStatement();
 			resultSet=statementa.executeQuery("select id,CompanyName,Email,password from company");
@@ -106,27 +106,25 @@ public class MysqlDaOForCompanyUser<T> implements UserDao<Company>{
 			System.out.println(exception.getMessage());
 		}
 }
-
-	
-
 	@Override
-	public String mail(Company company) {
-	//	for(companyList thiscompany: companyList) {
+	public void find(Company company) {
+		
+		try {
 			
-		//}
-		return null;
-	
-	}
+			connection =helper.getConnection();
 
-	@Override
-	public String password(Company company) {
-		// TODO Auto-generated method stub
-		return company.getPassword();
-	}
-
-
-
-	
+			resultSet=statementa.executeQuery("select id,CompanyName,Email,password from company");
+			statement.setInt(1, company.getId());
+			resultSet.getString("CompanyName");
+		String a=	resultSet.getString(company.getCompanyName());	
+			System.out.println(a+"a");
+			
+		} catch (SQLException exception) {
+			helper.showErrorMessage(exception);	
+			System.out.println(exception.getMessage());
+		}
+		
+	}	
 	}
 	
 

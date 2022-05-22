@@ -1,16 +1,15 @@
-import business.concretes.UserCheckManager;
-import business.concretes.UserManager;
+import entities.concretes.User;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Customer user = new Customer();
-		user.setCustomerId(1);
-		user.setFirstName("Soner");
-		user.setLastName("Çelik");
-		user.setEmail("sonercelik@hotmail.com");
+		User user = new User();
+		user.setId(1);
+		user.setName("server");
+		user.setLastName("tombak");
+		user.setEmail("server@hotmail.com");
 		user.setPassword("123456");
-		UserManager customerManager = new UserManagerC(new Ver);
+	
 	}
 
 }
