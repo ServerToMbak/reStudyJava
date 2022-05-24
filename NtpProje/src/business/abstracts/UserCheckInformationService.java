@@ -1,6 +1,6 @@
 package business.abstracts;
 
-public interface UserCheckInformationService<User> {
-	boolean checkEmail(User user);
-	boolean checkPassword(User user);
+public interface UserCheckInformationService<T> {
+	boolean checkEmail(T user);
+	boolean checkPassword(T user);
 }

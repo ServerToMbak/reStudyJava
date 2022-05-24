@@ -6,6 +6,6 @@ public interface UserDao<T> {
 	void delete(T Usertype);
 	void update(T Usertype);
 	void getAll();
-	void find(T Usertype);
+	T find(String email,String password);
 
 }

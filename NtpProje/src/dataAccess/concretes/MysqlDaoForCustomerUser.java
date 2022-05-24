@@ -116,10 +116,31 @@ public class MysqlDaoForCustomerUser<T> implements UserDao<Customer>{
 
 
 
-	@Override
-	public void find(Customer customer) {
+	public Customer find(String email,String password) {
+		Customer customer=null;
+		try {
+		connection=helper.getConnection();
+		String sorgu="select * FROM customer where email=? and password =?";
+		statement=connection.prepareStatement(sorgu);
+		statement.setString(1, email);
+		statement.setString(2, password);
+		resultSet=statement.executeQuery();
 		
+		if(resultSet.next()) {
+			customer=new Customer();
+			customer.setId(resultSet.getInt("ÝD"));
+			customer.setEmail(resultSet.getString("email"));
+			customer.setFirstName(resultSet.getString("firstName"));
+			customer.setLastName(resultSet.getString("lastName"));
+			customer.setPassword(resultSet.getString("password"));
+		}
 		
+		}
+		catch(SQLException exception) {
+			helper.showErrorMessage(exception);	
+			System.out.println(exception.getMessage());
+		}
+		return customer;
 	}
 
 }

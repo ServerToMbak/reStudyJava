@@ -8,30 +8,36 @@ import entities.Product;
 
 
 public class CustomerManager<T> implements UserManagerService<Customer>{
-	String emaail;
-	String password;
+	
 	private MysqlDaoForCustomerUser<Customer> userDao;
 	private ProductDao productDao;
+	private UserCheckInformation userCheckÝnformation;
 	public CustomerManager() {
 		
 	}
 	
-	public CustomerManager(MysqlDaoForCustomerUser<Customer> userDao,ProductDao productDao) {
+	public CustomerManager(MysqlDaoForCustomerUser<Customer> userDao,ProductDao productDao,UserCheckInformation userCheckInformation) {
 		this();
+		this.userCheckÝnformation=userCheckInformation;
 		this.productDao=productDao;
 		this.userDao = userDao;
 	}
 	@Override
 	public void signUp(Customer customer) {
-		this.userDao.add(customer);
-		System.out.println("Kayýt oldunuz alýþveriþe baþlayabilirsiniz");
+		if((userCheckÝnformation.checkEmail(customer)&&userCheckÝnformation.checkPassword(customer))==true){
+			
+			System.out.println("Kayýt oldunuz alýþveriþe baþlayabilirsiniz"); 
+			this.userDao.add(customer);
+		}
+		
 	}
 
 	@Override
 	public void singIn(Customer customer) {
-		System.out.println("sisteme giriþ için email adresinizi ve þifrenizi sýrasýyla giriniz");
-		if(customer.getEmail()==this.emaail) {
-			System.out.println("giriþ baþarýlý");
+		if(this.userDao.find(customer.getEmail(),customer.getPassword())==null) {
+			System.out.println("giriþ bilgilerinde kullanýcý bulunamadý tekrar deneyiniz");
+		}else {
+			System.out.println("giriþ yapýldý");
 		}
 	}
 

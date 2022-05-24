@@ -18,15 +18,22 @@ public class CompanyManager<T> implements UserManagerService<Company> {
 
 	@Override
 	public void signUp(Company company) {
-		this.userDao.add(company);
-		System.out.println("company eklendi");
+		if(usercheckInformation.checkEmail(company)&&usercheckInformation.checkPassword(company)) {
+			this.userDao.add(company);
+			System.out.println("company eklendi");	
+		}else {
+			
+		}
+		
 	}
 
 	@Override
 	public void singIn(Company company) {
-	 if((usercheckInformation.checkPassword(company)&&usercheckInformation.checkPassword(company))==true) {
-		 	System.out.println("giriþ yaptýnýz");
-	 }
+	if(this.userDao.find(company.getEmail(),company.getPassword())==null) {
+		System.out.println("giriþ bilgilerinde kullanýcý bulunamadý tekrar deneyiniz");
+	}else {
+		System.out.println("giriþ yapýldý");
+	}
 		
 	}
 

@@ -106,25 +106,32 @@ public class MysqlDaOForCompanyUser<T> implements UserDao<Company>{
 			System.out.println(exception.getMessage());
 		}
 }
-	@Override
-	public void find(Company company) {
-		
+	
+	public Company find(String email,String password) {
+		Company company=null;
 		try {
-			
-			connection =helper.getConnection();
-
-			resultSet=statementa.executeQuery("select id,CompanyName,Email,password from company");
-			statement.setInt(1, company.getId());
-			resultSet.getString("CompanyName");
-		String a=	resultSet.getString(company.getCompanyName());	
-			System.out.println(a+"a");
-			
-		} catch (SQLException exception) {
+		connection=helper.getConnection();
+		String sorgu="select * FROM company where email=? and password =?";
+		statement=connection.prepareStatement(sorgu);
+		statement.setString(1, email);
+		statement.setString(2, password);
+		resultSet=statement.executeQuery();
+		
+		if(resultSet.next()) {
+			company=new Company();
+			company.setId(resultSet.getInt("ÝD"));
+			company.setCompanyName(resultSet.getString("CompanyName"));
+			company.setEmail(resultSet.getString("email"));
+			company.setPassword(resultSet.getString("password"));
+		}
+		
+		}
+		catch(SQLException exception) {
 			helper.showErrorMessage(exception);	
 			System.out.println(exception.getMessage());
 		}
-		
-	}	
+		return company;
+	}
 	}
 	
 

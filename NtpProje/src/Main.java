@@ -45,27 +45,43 @@ public class Main {
 	customer1.setFirstName("first");
 	customer1.setLastName("first");
 	customer1.setPassword("first");
-	Customer customer2=new Customer();
-	customer2.setId(2);
-	customer2.setFirstName("ikinci");
-	customer2.setLastName("ikinci");
-	customer2.setEmail("ikinciCustomer@gmail.com");
-	customer2.setPassword("ikinci");
+	
+	Customer Faik=new Customer();
+	Faik.setEmail("dasdad@gmail.com");
+	Faik.setFirstName("faik");
+	Faik.setId(5);
+	Faik.setLastName("dasd");
+	Faik.setPassword("asdas");
 	MysqlDaOForCompanyUser<Company> daoCom=new MysqlDaOForCompanyUser<Company>();
 	MysqlDaoForCustomerUser<Customer> daocUS=new MysqlDaoForCustomerUser<Customer>();
 
 	
 
-	System.out.println("dasdasdsadas");
-	UserCheckInformation<User> checkInformation=new UserCheckInformation(daoCom);
+
+	UserCheckInformation<User> checkInformation=new UserCheckInformation();
 	CompanyManager<Company> companyManager=new CompanyManager<Company>(daoCom,proDao,checkInformation);
-	CustomerManager<Company> customerManager=new CustomerManager<Company>(daocUS,proDao);
+	CustomerManager<Company> customerManager=new CustomerManager<Company>(daocUS,proDao,checkInformation);
 	//companyManager.ürünEkle(product2);
 	//companyManager.ürünEkle(product);
+	//companyManager.ürünEkle(product1);
+	//customerManager.buyProduct(product1);
 	//customerManager.showProducts();
 	//customerManager.buyProduct(product);
-	customerManager.signUp(customer2);
-	customerManager.buyProduct(product2);
-	}
+	
+	//customerManager.signUp(customer1);
+	//customerManager.buyProduct(product2);
+	//daoCom.add(company1);
+	Customer customer2=new Customer();
+	customer2.setId(2);
+	customer2.setFirstName("ikinci");
+	customer2.setLastName("ikinci");
+	customer2.setEmail("ikinciCustomer@gmail.com");
+	customer2.setPassword("asdasdsa");
+	//customerManager.signUp(customer2);
+	//companyManager.singIn(company1);
+	customerManager.singIn(customer2);
+	
+	
+	} 
 	
 }
