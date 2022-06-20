@@ -12,7 +12,7 @@ public class ProductManager implements ProductManagerService{
 	}
 	@Override
 	public void buyProductS(Product product) {
-		this.productDao.DeleteProduct(product);
+		this.productDao.deleteProduct(product);
 		
 	}
 
@@ -25,6 +25,11 @@ public class ProductManager implements ProductManagerService{
 	@Override
 	public void addProduct(Product product) {
 		this.productDao.addProduct(product);		
+	}
+	@Override
+	public Product getProduct() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

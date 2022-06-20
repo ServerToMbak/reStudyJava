@@ -33,7 +33,7 @@ public class UserCheckInformation<T> implements UserCheckInformationService<User
 			return false;
 		}else {
 			if(user.getPassword().length()<6) {
-				System.out.println("parola 6 karekterden az olamaz");
+				System.out.println("parola 6 karekterden az olamaz yeniden deneyiniz");
 				return false;
 			}
 		}

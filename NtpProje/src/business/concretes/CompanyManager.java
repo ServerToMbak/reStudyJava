@@ -1,5 +1,7 @@
 package business.concretes;
 
+import java.util.Scanner;
+
 import business.abstracts.UserManagerService;
 import dataAccess.abstracts.ProductDao;
 import dataAccess.concretes.MysqlDaOForCompanyUser;
@@ -7,6 +9,7 @@ import entities.Company;
 import entities.Product;
 
 public class CompanyManager<T> implements UserManagerService<Company> {
+	Scanner girdi=new Scanner(System.in);
 	private MysqlDaOForCompanyUser<Company> userDao;
 	private UserCheckInformation usercheckInformation;
 	private ProductDao productdao;
@@ -28,17 +31,36 @@ public class CompanyManager<T> implements UserManagerService<Company> {
 	}
 
 	@Override
-	public void singIn(Company company) {
-	if(this.userDao.find(company.getEmail(),company.getPassword())==null) {
-		System.out.println("giriþ bilgilerinde kullanýcý bulunamadý tekrar deneyiniz");
-	}else {
-		System.out.println("giriþ yapýldý");
-	}
+	public boolean singIn() {
+		System.out.println("Mail adresinizi giriniz");
+		String mail=girdi.next();
+		System.out.println("Þifreyi Giriniz");
+		String sifre=girdi.next();
+		if(this.userDao.find(mail,sifre)!=null)
+		{
+			System.out.println("giriþ yapýldý "+this.userDao.find(mail,sifre).getCompanyName()+" Hoþgeldiniz");
+			return true;
+		}
+		if(this.userDao.find(mail, sifre)==null)
+		{
+			System.out.println("giriþ bilgileri Hatalý 0'la çýkýþ yapabilir yada 1'e basarak tekrar deneyebilivrsiniz");
+			int girdi2=girdi.nextInt();
+			if(girdi2==0) {
+				System.out.println("Çýkýþ Yapýldý");
+				return false;
+			}
+			if(girdi2==1) {
+				singIn();
+			}
+			return false;
+		}
+		
+	return false;
 		
 	}
 
 	@Override
-	public void Update(Company company) {
+	public void update(Company company) {
 		this.userDao.update(company);
 		
 	}
@@ -49,11 +71,22 @@ public class CompanyManager<T> implements UserManagerService<Company> {
 		
 	}
 	
-	public void ürünEkle(Product product) {
-		this.productdao.addProduct(product);
+	public void ürünEkle(Company company,Product product) {
+	product=new Product();
+	System.out.println("Eklenecek Ürün Ýsmi giriniz:");
+		product.setProductName(girdi.next());
+	System.out.println("Ekelenecek ürün fiyatýný giriniz");	
+		product.setProductPrice(girdi.nextInt());
+	System.out.println("Ekelenek Üürnümn Stok adetini giriniz");
+		product.setStockAdeti(girdi.nextInt());
+	this.productdao.addProduct(product);
+		
 	}
 	public void ürünSil(Product product) {
-		this.productdao.DeleteProduct(product);
+		this.productdao.deleteProduct(product);
+	}
+	public void ürünGüncelle(Product product) {
+		this.productdao.updateProduct(product);
 	}
 	public void tümÜrünlerim() {
 		this.productdao.showProducts();

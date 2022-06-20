@@ -11,7 +11,6 @@ import dataAccess.abstracts.ProductDao;
 import entities.Product;
 
 public class MySqlProductDao implements ProductDao{
-	
 	Connection connection=null;
 	DbHelper helper=new DbHelper();
 	PreparedStatement statement=null;
@@ -25,8 +24,8 @@ public class MySqlProductDao implements ProductDao{
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1, product.getId());
 			statement.setString(2, product.getProductName());
-			statement.setString(3, product.getProductPrice());
-			statement.setString(4, product.getStockAdeti());
+			statement.setInt(3, product.getProductPrice());
+			statement.setInt(4, product.getStockAdeti());
 			statement.setInt(5, product.getId());
 			int result=statement.executeUpdate();
 			System.out.println("ürün database eklendi " + product.getProductName());
@@ -41,7 +40,7 @@ public class MySqlProductDao implements ProductDao{
 	}
 
 	@Override
-	public void DeleteProduct(Product product) {
+	public void deleteProduct(Product product) {
 		try {
 
 			connection =helper.getConnection();
@@ -61,7 +60,7 @@ public class MySqlProductDao implements ProductDao{
 	}
 
 	@Override
-	public void UpdateProduct(Product product) {
+	public void updateProduct(Product product) {
 		try {
 
 			connection =helper.getConnection();
@@ -69,20 +68,15 @@ public class MySqlProductDao implements ProductDao{
 			
 			statement = connection.prepareStatement(sql);
 			statement.setString(1, product.getProductName());
-			statement.setString(2, product.getProductPrice());
-			statement.setString(3, product.getStockAdeti());
+			statement.setInt(2, product.getProductPrice());
+			statement.setInt(3, product.getStockAdeti());
 			statement.setInt(4, product.getId());
 			int result=statement.executeUpdate();
-			System.out.println("kayýt güncellendi");
-	
-			
+			System.out.println("ürün güncellendi");
 		} catch (SQLException exception) {
 			helper.showErrorMessage(exception);	
-			}
-		
+			}	
 	}
-
-
 	@Override
 	public void showProducts() {
 		try {
@@ -90,19 +84,17 @@ public class MySqlProductDao implements ProductDao{
 			connection =helper.getConnection();
 			statementa = connection.createStatement();
 			resultSet=statementa.executeQuery("select id,productName,productPrice,stockAdeti,sirketÝd from product");
-			
-			
 			while(resultSet.next()) {
 				productList.add(new Product(
 						resultSet.getInt("id"),
 						resultSet.getString("productName"),
-						resultSet.getString("productPrice"),
-						resultSet.getString("stockAdeti"),
+						resultSet.getInt("productPrice"),
+						resultSet.getInt("stockAdeti"),
 						resultSet.getInt("sirketÝd")));
 			}
 			System.out.println("-----------------Ürünler------------------------");
 			for(Product product: productList) {
-				System.out.println(product.getProductName());
+				System.out.println(product.getId()+" "+product.getProductName());
 			}
 			System.out.println("Toplam ürün sayýsý");
 			System.out.println(productList.size());
@@ -111,9 +103,5 @@ public class MySqlProductDao implements ProductDao{
 			helper.showErrorMessage(exception);	
 			System.out.println(exception.getMessage());
 		}
-		
 	}
-
-
-
 }

@@ -4,10 +4,13 @@ public class Product {
 	int id;
 	int sirket›d;
 	String productName;
-	String productPrice;
-	String stockAdeti;
-	
-	public Product(int id,String productName, String productPrice, String stockAdeti,int sirket›d) {
+	int productPrice;
+	int stockAdeti;
+	public Product(){
+		
+	}
+	public Product(int id,String productName, int productPrice, int stockAdeti,int sirket›d) {
+		this();
 		this.id = id;
 		this.sirket›d=sirket›d;
 		this.productName = productName;
@@ -33,16 +36,16 @@ public class Product {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public String getProductPrice() {
+	public int getProductPrice() {
 		return productPrice;
 	}
-	public void setProductPrice(String productPrice) {
+	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
-	public String getStockAdeti() {
+	public int getStockAdeti() {
 		return stockAdeti;
 	}
-	public void setStockAdeti(String stockAdeti) {
+	public void setStockAdeti(int stockAdeti) {
 		this.stockAdeti = stockAdeti;
 	}
 	

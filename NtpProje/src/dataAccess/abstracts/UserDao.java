@@ -7,5 +7,5 @@ public interface UserDao<T> {
 	void update(T Usertype);
 	void getAll();
 	T find(String email,String password);
-
+0
 }
