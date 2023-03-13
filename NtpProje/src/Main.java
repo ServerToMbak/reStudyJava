@@ -59,7 +59,7 @@ public class Main {
 		int a=girdi.nextInt();
 		if(a==1) {
 			
-			companyManager.ürünEkle(product);
+			companyManager.ürünEkle(company1, product);
 		}if(a==2) {
 			
 		}if(a==3) {

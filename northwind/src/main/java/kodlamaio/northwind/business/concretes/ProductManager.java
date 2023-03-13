@@ -22,5 +22,8 @@ public class ProductManager implements ProductService{
 	public List<Product> getAll() {
 		return this.productDao.findAll();
 	}
-
+	public void Add(Product product){
+		 this.productDao.save(product);
+		 
+	}
 }
