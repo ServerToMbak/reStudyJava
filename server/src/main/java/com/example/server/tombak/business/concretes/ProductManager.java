@@ -13,30 +13,30 @@ import com.example.server.tombak.entities.Product;
 @Service
 public class ProductManager implements ProductService{
 	
-	private ProductDal productDal;
+	private ProductDal _productDal;
 	
 	@Autowired
 	public  ProductManager(ProductDal productDal)
 	{
-		this.productDal = productDal;
+		_productDal = productDal;
 	}
 
 
 	@Override
 	public void add(Product product) {
-		productDal.save(product);
+		_productDal.save(product);
 	}
 
 
 	@Override
 	public void delete(int id) {
-		productDal.deleteById(id);	
+		_productDal.deleteById(id);	
 	}
 
 
 	@Override
 	public Product update(int id,Product newProduct) {
-		Optional<Product> product = productDal.findById(id);
+		Optional<Product> product = _productDal.findById(id);
 		
 		if(product.isPresent())
 		{
@@ -46,7 +46,7 @@ public class ProductManager implements ProductService{
 			foundProduct.setUnitprice(newProduct.getUnitprice());
 			foundProduct.setProductName(newProduct.getProductName());
 			foundProduct.setUnitsInStock(newProduct.getUnitsInStock());
-				productDal.save(foundProduct);
+				_productDal.save(foundProduct);
 			return foundProduct;
 		}
 		else
@@ -57,12 +57,12 @@ public class ProductManager implements ProductService{
 	@Override
 	public Product get(int id) 
 	{//Custom Exception
-		return productDal.findById(id).orElse(null);
+		return _productDal.findById(id).orElse(null);
 	}
 
 
 	@Override
 	public List<Product> getAll() {
-		return productDal.findAll();
+		return _productDal.findAll();
 	}
 }

@@ -8,7 +8,7 @@ public interface CompanyService {
 	
 	void addCompany(Company company);
 	void delete(Company company);
-	void update(Company compn);
+	Company update(int id, Company company);
 	Company get(int id); 
 	List<Company> getAll();
 	

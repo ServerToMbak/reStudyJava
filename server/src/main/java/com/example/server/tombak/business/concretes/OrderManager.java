@@ -1,6 +1,7 @@
 package com.example.server.tombak.business.concretes;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,14 +35,28 @@ public class OrderManager implements OrderService{
 	}
 
 	@Override
-	public void update(Order order) {
-		_orderDal.save(order);
+	public Order update(int id, Order NewOrder) {
+		
+		Optional<Order> order = _orderDal.findById(id);
+	
+		if(order.isPresent()) 
+		{
+			Order foundOrder = order.get();
+			foundOrder.setTotalPriceOfOrders(NewOrder.getTotalPriceOfOrders());
+			 _orderDal.save(foundOrder);
+			 return foundOrder;
+			
+		} else
+			return null;
+		
+			
+		
 		
 	}
 
 	@Override
 	public Order get(int id) {
-		return null;
+		return _orderDal.findById(id).orElse(null);
 		
 	}
 

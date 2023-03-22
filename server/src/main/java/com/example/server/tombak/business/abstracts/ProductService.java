@@ -10,4 +10,5 @@ public interface ProductService {
 	Product update(int id, Product product);
 	Product get(int id);
 	List<Product> getAll();
+	
 }

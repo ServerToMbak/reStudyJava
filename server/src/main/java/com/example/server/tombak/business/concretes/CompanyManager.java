@@ -1,6 +1,7 @@
 package com.example.server.tombak.business.concretes;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,13 +36,25 @@ public class CompanyManager implements CompanyService{
 	}
 
 	@Override
-	public void update(Company company) {
-		_companyDal.save(company);
+	public Company update(int id,Company NewCompany) {
+		Optional<Company> company= _companyDal.findById(id);
+		
+		if(company.isPresent())
+		{
+			Company foundCompany = company.get();
+			
+			foundCompany.setCompany_code(NewCompany.getCompany_code());
+			foundCompany.setCompanyName(NewCompany. getCompanyName());
+			_companyDal.save(foundCompany);
+			 return foundCompany;
+		}
+		else
+			return null;
 		
 	}
 	@Override
 	public Company get(int id) {
-		return null;
+		return _companyDal.findById(id).orElse(null);
 	}
 	@Override
 	public List<Company> getAll() {
