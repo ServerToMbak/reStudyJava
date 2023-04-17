@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.server.tombak.business.abstracts.OrderService;
+import com.example.server.tombak.core.utilities.DataResult;
+import com.example.server.tombak.core.utilities.Result;
+import com.example.server.tombak.core.utilities.SuccessDataResult;
+import com.example.server.tombak.core.utilities.SuccessResult;
 import com.example.server.tombak.dataAccess.abstratcs.OrderDal;
 import com.example.server.tombak.entities.Order;
 
@@ -23,8 +27,9 @@ public class OrderManager implements OrderService{
 	}
 	
 	@Override
-	public void add(Order order) {
+	public Result add(Order order) {
 		_orderDal.save(order);
+		return new SuccessResult("The operation is succesfull");
 		
 	}
 
@@ -55,8 +60,9 @@ public class OrderManager implements OrderService{
 	}
 
 	@Override
-	public Order get(int id) {
-		return _orderDal.findById(id).orElse(null);
+	public DataResult<Order> get(int id) {
+		return new SuccessDataResult<Order>
+			(_orderDal.findById(id).orElse(null),"The operation is successfull");
 		
 	}
 

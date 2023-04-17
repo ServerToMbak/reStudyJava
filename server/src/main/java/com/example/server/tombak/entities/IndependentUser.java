@@ -14,16 +14,16 @@ import lombok.Data;
 public class IndependentUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
+	private int id;
 
 	@Column(name="firstName")
-	String firstName;
+	private String firstName;
 	
 	@Column(name="lastName")
-	String lastName;
+	private String lastName;
 	
 	@Column(name="address")
-	String address;
+	private String address;
 	
 	
 	public String getFirstName() {

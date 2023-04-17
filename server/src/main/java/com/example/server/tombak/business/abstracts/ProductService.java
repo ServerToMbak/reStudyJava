@@ -10,5 +10,6 @@ public interface ProductService {
 	Product update(int id, Product product);
 	Product get(int id);
 	List<Product> getAll();
-	
+	List<Product> getAscendingProductName();
+	List<Product> findAllByunitPriceBetween(double minPrice, double maxPrice);
 }

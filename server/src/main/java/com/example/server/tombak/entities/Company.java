@@ -12,7 +12,7 @@ import lombok.Data;
 @Table(name ="companies")
 @Data
 @Entity
-public class Company extends User{
+public class Company  {
 	
 
 	
@@ -20,13 +20,20 @@ public class Company extends User{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
 	@Column(name="company_name")
-	String companyName;	
+	private String companyName;	
 	
 	@Column(name="company_code")
-	int company_code;
+	private int company_code;
 	
 	
 	
+	public Company(int id, String companyName, int company_code) {
+		super();
+		this.id = id;
+		this.companyName = companyName;
+		this.company_code = company_code;
+	}
+
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -42,4 +49,6 @@ public class Company extends User{
 	public void setCompany_code(int company_code) {
 		this.company_code = company_code;
 	}
+
+	
 }

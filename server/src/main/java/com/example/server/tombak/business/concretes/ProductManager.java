@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.server.tombak.business.abstracts.ProductService;
@@ -13,7 +14,7 @@ import com.example.server.tombak.entities.Product;
 @Service
 public class ProductManager implements ProductService{
 	
-	private ProductDal _productDal;
+	protected ProductDal _productDal;
 	
 	@Autowired
 	public  ProductManager(ProductDal productDal)
@@ -64,5 +65,19 @@ public class ProductManager implements ProductService{
 	@Override
 	public List<Product> getAll() {
 		return _productDal.findAll();
+	}
+
+
+	@Override
+	public List<Product> getAscendingProductName() {
+		Sort sort = Sort.by("productName");
+		return _productDal.findAll(sort);
+	}
+
+
+	@Override
+	public List<Product> findAllByunitPriceBetween(double minPrice, double maxPrice) {
+	
+		return _productDal.findAllByunitpriceBetween(minPrice,maxPrice);
 	}
 }

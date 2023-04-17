@@ -15,10 +15,10 @@ public class Order {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
+	private int id;
 	
 	@Column(name = "totalPrice")
-	int totalPriceOfOrders;
+	private int totalPriceOfOrders;
 	
 	int user_id;
 	
